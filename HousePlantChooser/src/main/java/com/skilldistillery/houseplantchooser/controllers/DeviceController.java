@@ -6,17 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.skilldistillery.houseplantchooser.data.PlantDAO;
+import com.skilldistillery.houseplantchooser.data.DeviceDAO;
 
 @Controller
-public class PlantController {
+public class DeviceController {
 	@Autowired
-	private PlantDAO plantDAO;
-
-	@RequestMapping(path = "viewPlants.do", method = RequestMethod.GET)
-	public String index(Model model) {
-		model.addAttribute("plants", plantDAO.findAll());
-		return "plantList";
+	private DeviceDAO deviceDAO;
+	
+	@RequestMapping(path = "viewDevices.do", method=RequestMethod.GET)
+	public String viewDevices(Model model) {
+		model.addAttribute("devices", deviceDAO.findAll());
+		return "deviceList";
 	}
-
 }

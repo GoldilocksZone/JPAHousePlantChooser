@@ -6,17 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.skilldistillery.houseplantchooser.data.PlantDAO;
+import com.skilldistillery.houseplantchooser.data.LightLevelDAO;
 
 @Controller
-public class PlantController {
+public class LightLevelController {
 	@Autowired
-	private PlantDAO plantDAO;
-
-	@RequestMapping(path = "viewPlants.do", method = RequestMethod.GET)
-	public String index(Model model) {
-		model.addAttribute("plants", plantDAO.findAll());
-		return "plantList";
+	private LightLevelDAO llDAO;
+	
+	@RequestMapping(path="viewLightLevels.do", method=RequestMethod.GET)
+	public String viewLightLevels(Model model) {
+		model.addAttribute("lightLevels", llDAO.findAll());
+		return "lightLevelList";
 	}
 
 }

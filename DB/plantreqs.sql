@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS `light_level` ;
 CREATE TABLE IF NOT EXISTS `light_level` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `category` VARCHAR(45) NULL,
-  `foot_candle_min` VARCHAR(45) NULL,
-  `foot_candle_max` VARCHAR(45) NULL,
+  `min` VARCHAR(45) NULL,
+  `max` VARCHAR(45) NULL,
   `comments` TEXT(65535) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `category_UNIQUE` (`category` ASC),
@@ -54,27 +54,55 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `common_names`
+-- Table `user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `common_names` ;
+DROP TABLE IF EXISTS `user` ;
 
-CREATE TABLE IF NOT EXISTS `common_names` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `common_name` VARCHAR(45) NOT NULL,
-  `plant_id` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `light_readings`
+-- Table `device`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `light_readings` ;
+DROP TABLE IF EXISTS `device` ;
 
-CREATE TABLE IF NOT EXISTS `light_readings` (
-  `datetime` DATETIME NOT NULL,
-  PRIMARY KEY (`datetime`))
+CREATE TABLE IF NOT EXISTS `device` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `owner` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_owner_idx` (`owner` ASC),
+  CONSTRAINT `fk_owner`
+    FOREIGN KEY (`owner`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `light_reading`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `light_reading` ;
+
+CREATE TABLE IF NOT EXISTS `light_reading` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `date` DATE NOT NULL,
+  `time` TIME NOT NULL,
+  `device_id` INT NOT NULL,
+  `reading` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_device_id_idx` (`device_id` ASC),
+  CONSTRAINT `fk_device_id`
+    FOREIGN KEY (`device_id`)
+    REFERENCES `device` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -93,13 +121,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantreqs`;
-INSERT INTO `light_level` (`id`, `category`, `foot_candle_min`, `foot_candle_max`, `comments`) VALUES (1, 'darkness', '0', '199', 'effectively no light');
-INSERT INTO `light_level` (`id`, `category`, `foot_candle_min`, `foot_candle_max`, `comments`) VALUES (2, 'very low', '200', '499', 'inappropriate for most plants');
-INSERT INTO `light_level` (`id`, `category`, `foot_candle_min`, `foot_candle_max`, `comments`) VALUES (3, 'low', '500', '999', 'good for shade-loving plants');
-INSERT INTO `light_level` (`id`, `category`, `foot_candle_min`, `foot_candle_max`, `comments`) VALUES (4, 'bright indirect', '1000', '1999', 'good for many types of plants that require indirect sunlight');
-INSERT INTO `light_level` (`id`, `category`, `foot_candle_min`, `foot_candle_max`, `comments`) VALUES (5, 'bright direct', '2000', '3999', 'appropriate for plants that require high light intensity');
-INSERT INTO `light_level` (`id`, `category`, `foot_candle_min`, `foot_candle_max`, `comments`) VALUES (6, 'strong direct', '4000', '4999', 'good for plants with high light requirements');
-INSERT INTO `light_level` (`id`, `category`, `foot_candle_min`, `foot_candle_max`, `comments`) VALUES (7, 'very bright', '5000', NULL, 'very bright indoor light');
+INSERT INTO `light_level` (`id`, `category`, `min`, `max`, `comments`) VALUES (1, 'darkness', '0', '199', 'effectively no light');
+INSERT INTO `light_level` (`id`, `category`, `min`, `max`, `comments`) VALUES (2, 'very low', '200', '499', 'inappropriate for most plants');
+INSERT INTO `light_level` (`id`, `category`, `min`, `max`, `comments`) VALUES (3, 'low', '500', '999', 'good for shade-loving plants');
+INSERT INTO `light_level` (`id`, `category`, `min`, `max`, `comments`) VALUES (4, 'bright indirect', '1000', '1999', 'good for many types of plants that require indirect sunlight');
+INSERT INTO `light_level` (`id`, `category`, `min`, `max`, `comments`) VALUES (5, 'bright direct', '2000', '3999', 'appropriate for plants that require high light intensity');
+INSERT INTO `light_level` (`id`, `category`, `min`, `max`, `comments`) VALUES (6, 'strong direct', '4000', '4999', 'good for plants with high light requirements');
+INSERT INTO `light_level` (`id`, `category`, `min`, `max`, `comments`) VALUES (7, 'very bright', '5000', '5999', 'very bright indoor light');
 
 COMMIT;
 
@@ -115,11 +143,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `common_names`
+-- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `plantreqs`;
-INSERT INTO `common_names` (`id`, `common_name`, `plant_id`) VALUES (DEFAULT, 'Chinese money plant', '1');
+INSERT INTO `user` (`id`, `first_name`, `last_name`) VALUES (1, 'joseph', 'marulli');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `device`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `plantreqs`;
+INSERT INTO `device` (`id`, `name`, `owner`) VALUES (1, 'test_device', 1);
 
 COMMIT;
 

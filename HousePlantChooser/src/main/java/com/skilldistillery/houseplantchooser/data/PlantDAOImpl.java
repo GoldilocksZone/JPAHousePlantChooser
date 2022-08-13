@@ -1,4 +1,4 @@
-package com.skilldistillery.houseplantchooser.dao;
+package com.skilldistillery.houseplantchooser.data;
 
 import java.util.List;
 
