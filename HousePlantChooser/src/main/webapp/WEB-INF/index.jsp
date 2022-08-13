@@ -6,7 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>House Plants</title>
-
+<c:choose>
+	<c:when test="${not empty plants }">
+		<table>
+			<thead>
+				<tr>
+					<th>Scientific Name</th>
+					<th>Light Requirement</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="plant" items="${plants }">
+					<tr>	
+						<td>${plant.scientificName }</td>
+						<td>${plant.lightRequirement }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:when>
+	<c:otherwise>
+		No plants found.
+	</c:otherwise>
+</c:choose>
 </head>
 <body>
 
