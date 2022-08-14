@@ -49,6 +49,7 @@ class PlantTest {
 	@Test
 	void test_Plant_mappings() {
 		assertEquals(plant.getScientificName(), "epipremnum aureum");
+		assertEquals(plant.getCommonName(), "Chinese money plant");
 		assertTrue(plant.getLightRequirement() == 4);
 	}
 

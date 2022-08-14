@@ -14,12 +14,7 @@ public class LightReadingController {
 	@Autowired
 	private LightReadingDAO lrDAO;
 	
-	@RequestMapping(path="viewReadings.do", method=RequestMethod.GET)
-	public String index(Model model) {
-		model.addAttribute("readings", lrDAO.getAllReadings());
-		return "readingList";
-	}
-	
+	// CREATE
 	@RequestMapping(path="addReading.do", method=RequestMethod.POST)
 	public String addReading(LightReading lightReading, Model model) {
 		lrDAO.addReading(lightReading);
@@ -30,6 +25,29 @@ public class LightReadingController {
 	@RequestMapping(path="addSilentReading.do", method=RequestMethod.POST)
 	public String addSilentReading(LightReading lightReading, Model model) {
 		lrDAO.addReading(lightReading);
+		model.addAttribute("readings", lrDAO.getAllReadings());
+		return "readingList";
+	}
+
+	//READ
+	@RequestMapping(path="viewReadings.do", method=RequestMethod.GET)
+	public String viewReadings(Model model) {
+		model.addAttribute("readings", lrDAO.getAllReadings());
+		return "readingList";
+	}
+	
+	// UPDATE
+	@RequestMapping(path="updateReading.do", method=RequestMethod.POST)
+	public String updateReading(Model model, LightReading lightReading) {
+		lrDAO.updateReading(lightReading);
+		model.addAttribute("readings", lrDAO.getAllReadings());
+		return "readingList";
+	}
+	
+	// DELETE
+	@RequestMapping(path="deleteReading.do", method=RequestMethod.POST)
+	public String deleteReading(Model model, int id) {
+		lrDAO.deleteReading(lrDAO.getReading(id));
 		model.addAttribute("readings", lrDAO.getAllReadings());
 		return "readingList";
 	}

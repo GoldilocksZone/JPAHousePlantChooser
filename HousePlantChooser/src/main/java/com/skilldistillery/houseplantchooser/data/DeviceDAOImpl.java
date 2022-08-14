@@ -17,9 +17,31 @@ public class DeviceDAOImpl implements DeviceDAO {
 	private EntityManager em;
 	
 	@Override
-	public List<Device> findAll() {
+	public void addDevice(Device device) {
+		em.persist(device);
+	}
+
+	@Override
+	public Device getDevice(int id) {
+		return em.find(Device.class, id);
+	}
+	
+	@Override
+	public List<Device> getAllDevices() {
 		String jpql = "SELECT d FROM Device d";
 		return em.createQuery(jpql, Device.class).getResultList();
+	}
+
+	@Override
+	public void updateDevice(Device device) {
+		Device toUpdate = em.find(Device.class, device.getId());
+		toUpdate.setName(device.getName());
+		toUpdate.setOwner(device.getOwner());
+	}
+	
+	@Override
+	public void deleteDevice(Device device) {
+		em.remove(device);
 	}
 
 }

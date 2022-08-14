@@ -15,7 +15,7 @@ public class LightLevel {
 	private String category;
 	private int max;
 	private int min;
-	private String comments;
+	private String notes;
 
 	public LightLevel() {
 
@@ -53,18 +53,18 @@ public class LightLevel {
 		this.min = min;
 	}
 
-	public String getComments() {
-		return comments;
+	public String getNotes() {
+		return notes;
 	}
 
-	public void setComments(String comments) {
-		this.comments = comments;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	@Override
 	public String toString() {
-		return "LightLevel [id=" + id + ", category=" + category + ", max=" + max + ", min=" + min + ", comments="
-				+ comments + "]";
+		return "LightLevel [id=" + id + ", category=" + category + ", max=" + max + ", min=" + min + ", notes="
+				+ notes + "]";
 	}
 
 }

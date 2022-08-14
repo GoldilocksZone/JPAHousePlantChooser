@@ -51,7 +51,7 @@ class LightLevelTest {
 		assertEquals(lightLevel.getCategory(), "darkness");
 		assertTrue(lightLevel.getMin() == 0);
 		assertTrue(lightLevel.getMax() == 199);
-		assertEquals(lightLevel.getComments(), "effectively no light");
+		assertEquals(lightLevel.getNotes(), "effectively no light");
 	}
 
 }

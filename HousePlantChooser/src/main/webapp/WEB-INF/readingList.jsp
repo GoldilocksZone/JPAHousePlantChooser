@@ -9,13 +9,39 @@
 <title>Readings</title>
 </head>
 <body>
+<h5>Add a reading:</h5>
+<form action="addReading.do" method="POST">
+	<label for="date">Date</label>
+	<input type="text" id="date" name="date" placeholder="YYYY-MM-DD">
+	<label for="time">Time</label>
+	<input type="text" id="time" name="time" placeholder="HH:mm:ss">
+	<label for="deviceId">Device Id</label>
+	<input type="text" id="deviceId" name="deviceId" placeholder="#">
+	<label for="reading">Reading (lumens)</label>
+	<input type="text" id="reading" name="reading" placeholder="####">
+	<input type="submit" value="Submit">
+</form>
+<h5>Update a reading:</h5>
+<form action="updateReading.do" method="POST">
+	<label for="id">Id</label>
+	<input type="text" id="id" name="id" placeholder="#">
+	<label for="date">Date</label>
+	<input type="text" id="date" name="date" placeholder="YYYY-MM-DD">
+	<label for="time">Time</label>
+	<input type="text" id="time" name="time" placeholder="HH:mm:ss">
+	<label for="deviceId">Device Id</label>
+	<input type="text" id="deviceId" name="deviceId" placeholder="#">
+	<label for="reading">Reading (lumens)</label>
+	<input type="text" id="reading" name="reading" placeholder="####">
+	<input type="submit" value="Submit">
+</form>
 <h5>Delete a reading by id:</h5>
-<form action="Reading.do" method="POST">
+<form action="deleteReading.do" method="POST">
 	<label for="id">Id:</label>
 	<input type="text" id="id" name="id" placeholder="#">
 	<input type="submit" value="Submit">
 </form>
-<h5>Readings:</h5>
+<h5>Reading List:</h5>
 <c:choose>
 	<c:when test="${not empty readings }">
 		<table>

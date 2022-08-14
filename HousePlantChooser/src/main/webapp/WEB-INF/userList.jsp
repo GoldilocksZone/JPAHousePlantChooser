@@ -7,6 +7,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Users</title>
+</head>
+<body>
+<h5>Add a user:</h5>
+<form action="addUser.do" method="POST">
+	<label for="firstName">First Name</label>
+	<input type="text" id="firstName" name="firstName" placeholder="First Name">
+	<label for="lastName">Last Name</label>
+	<input type="text" id="lastName" name="lastName" placeholder="Last Name">
+	<input type="submit" value="Submit">
+</form>
+<h5>Update a user:</h5>
+<form action="updateUser.do" method="POST">
+	<label for="id">Id</label>
+	<input type="text" id="id" name="id" placeholder="#">
+	<label for="firstName">First Name</label>
+	<input type="text" id="firstName" name="firstName" placeholder="First Name">
+	<label for="lastName">Last Name</label>
+	<input type="text" id="lastName" name="lastName" placeholder="Last Name">
+	<input type="submit" value="Submit">
+</form>
+<h5>Delete a user by id:</h5>
+<form action="deleteUser.do" method="POST">
+	<label for="id">Id:</label>
+	<input type="text" id="id" name="id" placeholder="#">
+	<input type="submit" value="Submit">
+</form>
 <c:choose>
 	<c:when test="${not empty users }">
 		<table>
@@ -32,8 +58,5 @@
 		No users found.
 	</c:otherwise>
 </c:choose>
-</head>
-<body>
-
 </body>
 </html>

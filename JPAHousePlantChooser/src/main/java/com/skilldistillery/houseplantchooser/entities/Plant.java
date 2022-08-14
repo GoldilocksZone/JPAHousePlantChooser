@@ -13,6 +13,8 @@ public class Plant {
 	private int id;
 	@Column(name = "scientific_name")
 	private String scientificName;
+	@Column(name = "common_name")
+	private String commonName;
 	@Column(name = "light_requirement")
 	private int lightRequirement;
 
@@ -36,6 +38,14 @@ public class Plant {
 		this.scientificName = scientificName;
 	}
 
+	public String getCommonName() {
+		return commonName;
+	}
+
+	public void setCommonName(String commonName) {
+		this.commonName = commonName;
+	}
+
 	public int getLightRequirement() {
 		return lightRequirement;
 	}
@@ -46,8 +56,8 @@ public class Plant {
 
 	@Override
 	public String toString() {
-		return "Plant [id=" + id + ", scientificName=" + scientificName + ", lightRequirement=" + lightRequirement
-				+ "]";
+		return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName
+				+ ", lightRequirement=" + lightRequirement + "]";
 	}
 
 }

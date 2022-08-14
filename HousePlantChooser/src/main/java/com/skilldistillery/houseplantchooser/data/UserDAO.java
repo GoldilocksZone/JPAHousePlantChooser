@@ -5,5 +5,9 @@ import java.util.List;
 import com.skilldistillery.houseplantchooser.entities.User;
 
 public interface UserDAO {
-	List<User> findAll();
+	void addUser(User user);
+	User getUser(int id);
+	List<User> getAllUsers();
+	void updateUser(User user);
+	void deleteUser(User user);
 }

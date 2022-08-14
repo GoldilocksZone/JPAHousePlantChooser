@@ -17,9 +17,32 @@ public class LightLevelDAOImpl implements LightLevelDAO {
 	private EntityManager em;
 
 	@Override
-	public List<LightLevel> findAll() {
-		String jpql = "SELECT ll FROM LightLevel ll";
+	public void addLightLevel(LightLevel lightLevel) {
+		em.persist(lightLevel);
+	}
+
+	@Override
+	public LightLevel getLightLevel(int id) {
+		return em.find(LightLevel.class, id);
+	}
+
+	@Override
+	public List<LightLevel> getAllLightLevels() {
+		String jpql = "SELECT lr FROM LightLevel lr";
 		return em.createQuery(jpql, LightLevel.class).getResultList();
 	}
 
+	@Override
+	public void updateLightLevel(LightLevel lightLevel) {
+		LightLevel toUpdate = em.find(LightLevel.class, lightLevel.getId());
+		toUpdate.setCategory(lightLevel.getCategory());
+		toUpdate.setMin(lightLevel.getMin());
+		toUpdate.setMax(lightLevel.getMax());
+		toUpdate.setNotes(lightLevel.getNotes());
+	}
+
+	@Override
+	public void deleteLightLevel(LightLevel lightLevel) {
+		em.remove(lightLevel);
+	}
 }

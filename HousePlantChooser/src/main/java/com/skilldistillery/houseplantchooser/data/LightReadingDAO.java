@@ -5,7 +5,9 @@ import java.util.List;
 import com.skilldistillery.houseplantchooser.entities.LightReading;
 
 public interface LightReadingDAO {
-	List<LightReading> getAllReadings();
 	void addReading(LightReading lightReading);
-//	void deleteReading(LightReading lightReading);
+	LightReading getReading(int id);
+	List<LightReading> getAllReadings();
+	void updateReading(LightReading lightReading);
+	void deleteReading(LightReading lightReading);
 }
