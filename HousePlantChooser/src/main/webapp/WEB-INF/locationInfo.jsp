@@ -6,13 +6,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${device.name }</title>
+<style>
+table {
+	vertical-align: top;
+}
+</style>
 </head>
 <body>
-<p>LIGHT CATEGORY: ${lightCategory }</p>
-<p>PLANT LIST:</p>
-<c:forEach var="plant" items="${plantList }">
-	<p>${plant.commonName }</p>
-</c:forEach>
+<table>
+	<tbody>
+		<tr>
+			<td>Location:</td>
+			<td>${device.name }</td>
+		</tr>
+		<tr>
+			<td>Light Category:</td>
+			<td>${lightCategory }</td>
+		</tr>
+		<tr>
+			<td>Plants that will thrive here:</td>
+			<td>
+				<ul>
+					<c:forEach var="plant" items="${plantList }">
+						<li>${plant.commonName }</li>
+					</c:forEach>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
 </body>
 </html>
