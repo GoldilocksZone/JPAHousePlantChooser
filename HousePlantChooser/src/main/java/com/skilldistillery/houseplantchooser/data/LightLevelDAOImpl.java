@@ -31,6 +31,12 @@ public class LightLevelDAOImpl implements LightLevelDAO {
 		String jpql = "SELECT lr FROM LightLevel lr";
 		return em.createQuery(jpql, LightLevel.class).getResultList();
 	}
+	
+	@Override
+	public String getCategoryFromLightLevel(Integer lightLevel) {
+		String jpql = "SELECT ll.category FROM LightLevel ll WHERE :lightLevel BETWEEN ll.min AND ll.max";
+		return em.createQuery(jpql).setParameter("lightLevel", lightLevel).getSingleResult().toString();
+	}
 
 	@Override
 	public void updateLightLevel(LightLevel lightLevel) {

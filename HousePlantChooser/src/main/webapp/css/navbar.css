@@ -1,0 +1,13 @@
+.nav-bar {
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	background-color: white;
+}
+
+.nav-center {
+	text-align: center
+}
+
+.nav-right {
+	text-align: right
+}

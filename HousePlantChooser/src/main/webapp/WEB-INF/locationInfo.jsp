@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-AVERAGE READING: {$averageReading }
-PLANT LIST:
+<p>LIGHT CATEGORY: ${lightCategory }</p>
+<p>PLANT LIST:</p>
 <c:forEach var="plant" items="${plantList }">
 	<p>${plant.commonName }</p>
 </c:forEach>

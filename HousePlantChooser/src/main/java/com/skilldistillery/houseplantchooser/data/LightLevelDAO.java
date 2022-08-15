@@ -8,6 +8,7 @@ public interface LightLevelDAO {
 	void addLightLevel(LightLevel lightLevel);
 	LightLevel getLightLevel(int id);
 	List<LightLevel> getAllLightLevels();
+	String getCategoryFromLightLevel(Integer lightLevel);
 	void updateLightLevel(LightLevel lightLevel);
 	void deleteLightLevel(LightLevel lightLevel);
 }
