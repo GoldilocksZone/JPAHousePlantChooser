@@ -31,6 +31,11 @@ public class LightReadingDAOImpl implements LightReadingDAO {
 		String jpql = "SELECT lr FROM LightReading lr";
 		return em.createQuery(jpql, LightReading.class).getResultList();
 	}
+	
+	public Integer getAverageDaytimeLightReading(int id) {
+			String jpql = "SELECT AVG(lr.reading) FROM LightReading lr WHERE lr.deviceId = :deviceId ORDER BY lr.reading DESC";
+			return ((Double) em.createQuery(jpql).setParameter("deviceId", id).getSingleResult()).intValue();
+		}
 
 	@Override
 	public void updateReading(LightReading lightReading) {

@@ -38,7 +38,7 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Owner</th>
+					<th>Id</th>
 					<th>Name</th>
 					<th>Owner</th>
 				</tr>

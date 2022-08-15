@@ -8,6 +8,7 @@ public interface PlantDAO {
 	void addPlant(Plant plant);
 	Plant getPlant(int id);
 	List<Plant> getAllPlants();
+	List<Plant> getPlantListFromAverageReading(Integer averageReading);
 	void updatePlant(Plant plant);
 	void deletePlant(Plant plant);
 }

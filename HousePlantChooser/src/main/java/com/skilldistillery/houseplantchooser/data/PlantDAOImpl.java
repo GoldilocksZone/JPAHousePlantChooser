@@ -31,11 +31,17 @@ public class PlantDAOImpl implements PlantDAO {
 		String jpql = "SELECT p FROM Plant p";
 		return em.createQuery(jpql, Plant.class).getResultList();
 	}
+	
+	public List<Plant> getPlantListFromAverageReading(Integer averageReading) {
+		String jpql = "SELECT p FROM Plant p WHERE lightRequirement = (SELECT ll.id FROM LightLevel ll WHERE :lightLevel BETWEEN ll.min AND ll.max)";
+		return em.createQuery(jpql, Plant.class).setParameter("lightLevel", averageReading).getResultList();
+	}
 
 	@Override
 	public void updatePlant(Plant plant) {
 		Plant toUpdate = em.find(Plant.class, plant.getId());
 		toUpdate.setScientificName(plant.getScientificName());
+		toUpdate.setCommonName(plant.getCommonName());
 		toUpdate.setLightRequirement(plant.getLightRequirement());
 	}
 	

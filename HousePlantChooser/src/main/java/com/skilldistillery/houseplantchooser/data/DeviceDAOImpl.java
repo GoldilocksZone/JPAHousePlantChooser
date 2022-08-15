@@ -31,7 +31,7 @@ public class DeviceDAOImpl implements DeviceDAO {
 		String jpql = "SELECT d FROM Device d";
 		return em.createQuery(jpql, Device.class).getResultList();
 	}
-
+	
 	@Override
 	public void updateDevice(Device device) {
 		Device toUpdate = em.find(Device.class, device.getId());

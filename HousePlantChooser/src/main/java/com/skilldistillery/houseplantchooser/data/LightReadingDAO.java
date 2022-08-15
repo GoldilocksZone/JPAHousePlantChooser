@@ -8,6 +8,7 @@ public interface LightReadingDAO {
 	void addReading(LightReading lightReading);
 	LightReading getReading(int id);
 	List<LightReading> getAllReadings();
+	Integer getAverageDaytimeLightReading(int id);
 	void updateReading(LightReading lightReading);
 	void deleteReading(LightReading lightReading);
 }

@@ -30,6 +30,12 @@ public class DeviceController {
 	}
 
 	//READ
+	@RequestMapping(path="/", method=RequestMethod.GET)
+	public String welcome(Model model) {
+		model.addAttribute("devices", deviceDAO.getAllDevices());
+		return "index";
+	}
+	
 	@RequestMapping(path="viewDevices.do", method=RequestMethod.GET)
 	public String viewDevices(Model model) {
 		model.addAttribute("devices", deviceDAO.getAllDevices());

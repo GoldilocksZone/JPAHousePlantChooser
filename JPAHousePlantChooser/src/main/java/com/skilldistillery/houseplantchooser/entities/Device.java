@@ -16,7 +16,7 @@ public class Device {
 	public Device() {
 
 	}
-
+	
 	public int getId() {
 		return id;
 	}
