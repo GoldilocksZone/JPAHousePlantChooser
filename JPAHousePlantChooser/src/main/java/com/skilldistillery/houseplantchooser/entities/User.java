@@ -15,6 +15,8 @@ public class User {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
+	@Column
+	private String password;
 
 	public User() {
 
@@ -42,6 +44,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

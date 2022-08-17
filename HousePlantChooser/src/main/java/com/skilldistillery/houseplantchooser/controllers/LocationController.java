@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.houseplantchooser.data.DeviceDAO;
 import com.skilldistillery.houseplantchooser.data.LightLevelDAO;
 import com.skilldistillery.houseplantchooser.data.LightReadingDAO;
 import com.skilldistillery.houseplantchooser.data.PlantDAO;
+import com.skilldistillery.houseplantchooser.data.UserDAO;
 import com.skilldistillery.houseplantchooser.entities.Device;
 import com.skilldistillery.houseplantchooser.entities.Plant;
 
@@ -25,10 +27,27 @@ public class LocationController {
 	private PlantDAO plantDAO;
 	@Autowired
 	private DeviceDAO deviceDAO;
+	@Autowired
+	private UserDAO userDAO;
 	
-	@RequestMapping(path="dev.do")
-	public String goDev() {
-		return "dev";
+	@RequestMapping(path="auth.do")
+	public String goAuth() {
+		return "auth";
+	}
+	
+	@RequestMapping(path="dev.do", method=RequestMethod.POST)
+	public String goDev(Model model, @RequestParam String password) {
+		if (userDAO.validateUserPassword(password)) {
+			return "dev";
+		} else {
+			model.addAttribute("message", "Authentication failed.");
+			return "auth";
+		}
+	}
+	
+	@RequestMapping(path="about.do")
+	public String goAbout() {
+		return "about";
 	}
 	
 	@RequestMapping(path="viewLocation.do")

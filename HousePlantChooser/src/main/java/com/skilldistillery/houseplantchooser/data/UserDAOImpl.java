@@ -31,6 +31,20 @@ public class UserDAOImpl implements UserDAO {
 		String jpql = "SELECT u FROM User u";
 		return em.createQuery(jpql, User.class).getResultList();
 	}
+	
+	@Override
+	public boolean validateUserPassword(String password) {
+		String jpql = "SELECT COUNT(u) FROM User u WHERE u.password = :password";
+		int count = em.createQuery(jpql, Long.class)
+						.setParameter("password", password)
+						.getSingleResult()
+						.intValue();
+		if (count > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	@Override
 	public void updateUser(User user) {
